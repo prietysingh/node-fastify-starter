@@ -1,57 +1,47 @@
-# Stege1: Generate the build
-FROM node:10.17-alpine as ehr-rpc-server-builder
-
-WORKDIR /app
-
-ADD . /app
-
+FROM node:10.17-alpine
+ 
+RUN mkdir -p /opt
+ 
 # install dependecies
 RUN apk update
-RUN apk add --no-cache git build-base gcc abuild make bash python
-
+RUN apk add --no-cache git build-base gcc abuild make bash python3
+ 
 # Install postgres
 RUN apk add postgresql postgresql-client
-
-RUN yarn global add linklocal
-
+ 
 # set our node environment, either development or production
 # defaults to production, compose overrides this to development on build and run
 ARG NODE_ENV=production
 ENV NODE_ENV $NODE_ENV
-
-
+ 
 # default to port 80 for node, and 9229 and 9230 (tests) for debug
 ARG PORT=80
 ENV PORT=$PORT
 EXPOSE $PORT 9229 9230
-
+ 
 # install latest npm, reguardless of node version, for speed and fixes
-RUN npm i npm@latest -g
-
+RUN npm i npm@latest node-gyp -g
+ 
 # install dependencies first, in a different location for easier app bind mounting for local development
-WORKDIR /app
-
+WORKDIR /opt
+ 
 COPY package*.json yarn*.lock ./
 RUN yarn install --production=false
-ENV PATH /app/node_modules/.bin:$PATH
-
+ENV PATH /opt/node_modules/.bin:$PATH
+ 
 # copy in our source code last, as it changes the most
-COPY . /app
-
-RUN yarn workspaces info --json
-RUN yarn install --production=false
-RUN yarn bootstrap
-
-RUN yarn install --production=false
-ENV PATH /app/node_modules/.bin:$PATH
-
-# build queue
-RUN yarn build  
-
-RUN linklocal -r
-
+COPY . /opt
+ 
+RUN npm run build
+ 
 # copy dir which is not copied by babel
-COPY ./bin /app/dist/
-COPY ./build /app/dist/
+COPY ./bin /opt/dist/
+ 
+# copy dir which is not copied by babel
+COPY ./bin /opt/
+ 
+RUN chmod +x /opt/bin/*
+ 
+CMD /opt/bin/www
 
-CMD yarn start:prod
+
