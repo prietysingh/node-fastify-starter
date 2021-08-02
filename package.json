@@ -19,6 +19,7 @@
     ]
   },
   "scripts": {
+    "clean": "rm -rf dist && mkdir dist",
     "test": "node --inspect=0.0.0.0:6858 node_modules/jest/bin/jest.js",
     "build-babel": "babel . -d ./dist -s true --ignore node_modules",
     "build": "npm run clean && npm run build-babel",
