@@ -6,10 +6,7 @@
   "license": "ISC",
   "private": true,
   "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "echo 'running tests...' && yarn test:quiet && echo 'lint checking...' && yarn run-lint"
-    }
+    "hooks": {}
   },
   "lint-staged": {
     "*.{js,css,scss}": [

@@ -40,7 +40,7 @@ const config = convict({
     name: {
       doc: 'Database Name',
       format: String,
-      default: '',
+      default: 'gcp_poc',
       env: 'DB_NAME'
     },
     user: {
@@ -58,13 +58,13 @@ const config = convict({
     host: {
       doc: 'DB host',
       format: String,
-      default: '',
+      default: 'localhost',
       env: 'DB_HOST'
     },
     port: {
       doc: 'DB PORT',
       format: 'port',
-      default: '',
+      default: '5432',
       env: 'DB_PORT'
     }
   },
