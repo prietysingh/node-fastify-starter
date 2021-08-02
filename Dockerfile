@@ -1,5 +1,5 @@
 # Stege1: Generate the build
-FROM node:10.17-alpine as ehr-rpc-server-builder
+FROM node:13-slim
 
 WORKDIR /app
 
