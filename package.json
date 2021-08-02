@@ -23,21 +23,17 @@
     "build": "mkdir dist && babel ./ -s -d dist",
     "start:prod": "./dist/bin/www",
     "start": "nodemon ./bin/dev",
-    "prettier": "prettier \"**/*.{js,css}\" --write",
-    "run-lint": "eslint --fix ."
+    "prettier": "prettier \"**/*.{js,css}\" --write"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
     "babelify": "^10.0.0",
     "convict": "^5.2.0",
     "cross-env": "^7.0.0",
     "dotenv": "^8.2.0",
-    "eslint": "^7.0.0",
-    "eslint-config-prettier": "^6.11.0",
     "fastify": "^2.12.0",
     "fastify-autoload": "^1.2.2",
     "fastify-blipp": "^2.1.0",
