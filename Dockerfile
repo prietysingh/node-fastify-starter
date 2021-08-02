@@ -1,5 +1,5 @@
 # Stege1: Generate the build
-FROM node:13-slim
+FROM node:10.17-alpine as ehr-rpc-server-builder
 
 WORKDIR /app
 
@@ -29,21 +29,21 @@ EXPOSE $PORT 9229 9230
 RUN npm i npm@latest -g
 
 # install dependencies first, in a different location for easier app bind mounting for local development
-WORKDIR /opt
+WORKDIR /app
 
 COPY package*.json yarn*.lock ./
 RUN yarn install --production=false
-ENV PATH /opt/node_modules/.bin:$PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
 # copy in our source code last, as it changes the most
-COPY . /opt
+COPY . /app
 
 RUN yarn workspaces info --json
 RUN yarn install --production=false
 RUN yarn bootstrap
 
 RUN yarn install --production=false
-ENV PATH /opt/node_modules/.bin:$PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
 # build queue
 RUN yarn build  
@@ -51,7 +51,7 @@ RUN yarn build
 RUN linklocal -r
 
 # copy dir which is not copied by babel
-COPY ./bin /opt/dist/
-COPY ./build /opt/dist/
+COPY ./bin /app/dist/
+COPY ./build /app/dist/
 
 CMD yarn start:prod
