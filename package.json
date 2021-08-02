@@ -33,6 +33,7 @@
     "@babel/preset-env": "^7.2.0",
     "babel-loader": "^8.0.6",
     "babelify": "^10.0.0",
+    "babel-preset-env": "^1.6.1",
     "convict": "^5.2.0",
     "cross-env": "^7.0.0",
     "dotenv": "^8.2.0",
