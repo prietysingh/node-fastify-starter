@@ -1,7 +1,9 @@
 # Stege1: Generate the build
 FROM node:10.17-alpine as ehr-rpc-server-builder
 
-RUN mkdir -p /opt
+WORKDIR /app
+
+ADD . /app
 
 # install dependecies
 RUN apk update
