@@ -20,7 +20,8 @@
   },
   "scripts": {
     "test": "node --inspect=0.0.0.0:6858 node_modules/jest/bin/jest.js",
-    "build": "mkdir dist && babel ./ -s -d dist",
+    "build-babel": "babel . -d ./dist -s true --ignore node_modules",
+    "build": "npm run clean && npm run build-babel",
     "start:prod": "./dist/bin/www",
     "start": "nodemon ./bin/dev",
     "prettier": "prettier \"**/*.{js,css}\" --write"
