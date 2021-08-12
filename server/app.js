@@ -10,6 +10,7 @@ import logger from './logger'
 
 export default function NodeServer(fastify, opts, next) {
   fastify.use(Raven.requestHandler())
+  fastify.options('/*', (req, reply) => reply.send());
   // fastify.register(cors, {
   //   allowedHeaders: ['Content-Type', 'Authorization']
   // })
