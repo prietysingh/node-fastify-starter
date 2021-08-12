@@ -10,27 +10,17 @@ import logger from './logger'
 
 export default function NodeServer(fastify, opts, next) {
   fastify.use(Raven.requestHandler())
+  fastify.options('/*', (req, reply) => reply.send())
   // fastify.register(cors, {
   //   allowedHeaders: ['Content-Type', 'Authorization']
   // })
   // fastify.use(cors())
-//   fastify.register(cors, {
-//     origin: true,
-//     allowedHeaders: ['Origin', 'X-Requested-With', 'Accept', 'Content-Type', 'Authorization'],
-//     methods: ['GET', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS']
-//  })
-
- fastify.register(require('fastify-cors'), (instance) => (req, callback) => {
-  let corsOptions;
-  // do not include CORS headers for requests from localhost
-  if (/localhost/.test(origin)) {
-    corsOptions = { origin: false }
-  } else {
-    corsOptions = { origin: true }
-  }
-  callback(null, corsOptions) // callback expects two parameters: error and options
-})
-
+  fastify.register(cors, {
+    origin: true,
+    credentials: true,
+    allowedHeaders: ['Origin', 'X-Requested-With', 'Accept', 'Content-Type', 'Authorization'],
+    methods: ['GET', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS']
+ })
   fastify.register(helmet)
   fastify.register(noIcon)
 
