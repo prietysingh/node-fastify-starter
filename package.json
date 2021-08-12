@@ -57,7 +57,8 @@
     "raven": "^2.6.4",
     "sequelize": "^5.21.8",
     "sequelize-cli": "^5.5.1",
-    "winston": "^3.2.1"
+    "winston": "^3.2.1",
+    "cors": "^2.8.5"
   },
   "dependencies": {
     "bcrypt": "^4.0.1"

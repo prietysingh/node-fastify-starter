@@ -3,15 +3,17 @@ import AutoLoad from 'fastify-autoload'
 import noIcon from 'fastify-no-icon'
 import helmet from 'fastify-helmet'
 import qs from 'qs'
-import cors from 'fastify-cors'
+// import cors from 'fastify-cors'
 import Raven from './raven'
 import logger from './logger'
+import cors from 'cors'
 
 export default function NodeServer(fastify, opts, next) {
   fastify.use(Raven.requestHandler())
-  fastify.register(cors, {
-    allowedHeaders: ['Content-Type', 'Authorization']
-  })
+  // fastify.register(cors, {
+  //   allowedHeaders: ['Content-Type', 'Authorization']
+  // })
+  fastify.use(cors())
   fastify.register(helmet)
   fastify.register(noIcon)
 
