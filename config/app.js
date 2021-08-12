@@ -58,7 +58,7 @@ const config = convict({
     host: {
       doc: 'DB host',
       format: String,
-      default: 'node-poc-321706:us-central1:postgres-poc',
+      default: '',
       env: 'DB_HOST'
     },
     port: {
