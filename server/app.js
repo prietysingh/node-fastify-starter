@@ -14,7 +14,7 @@ export default function NodeServer(fastify, opts, next) {
   //   allowedHeaders: ['Content-Type', 'Authorization']
   // })
   // fastify.use(cors())
-  app.register(cors, {
+  fastify.register(cors, {
     origin: /\*/,
     allowedHeaders: ['Origin', 'X-Requested-With', 'Accept', 'Content-Type', 'Authorization'],
     methods: ['GET', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS']
