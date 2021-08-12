@@ -18,7 +18,7 @@ export default function NodeServer(fastify, opts, next) {
   fastify.register(cors, {
     origin: true,
     credentials: true,
-    allowedHeaders: ['Origin', 'X-Requested-With', 'Accept', 'Content-Type', 'Authorization'],
+    allowedHeaders: ['Origin', 'X-Requested-With', 'Accept', 'Content-Type', 'Authorization', 'Pragma'],
     methods: ['GET', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS']
  })
   fastify.register(helmet)
