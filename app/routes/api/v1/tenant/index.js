@@ -8,7 +8,7 @@ const userRoutes = async (app) => {
     done()
   })
 
-  app.get('/:userId', TenantController.getByUserId)
+  app.get('/:userId', {schema: getTenant}, TenantController.getByUserId)
 
 
 }

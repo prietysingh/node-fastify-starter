@@ -70,12 +70,6 @@ const getTenant = {
       }
     }
   },
-  response: {
-    200: {
-      type: 'object',
-      properties: tenantProperties
-    }
-  },
   security: [
     {
       JWT: {
