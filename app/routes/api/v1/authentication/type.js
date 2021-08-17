@@ -36,12 +36,6 @@ const LoginUser = {
   tags,
   body: {
     properties: loginSchema
-  },
-  response: {
-    200: {
-      type: 'object',
-      properties: loginResponse
-    }
   }
 }
 

@@ -7,10 +7,10 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     company: DataTypes.STRING,
     isActive: DataTypes.BOOLEAN,
-    tenantId: DataTypes.INTEGER
+    TenantId: DataTypes.INTEGER
   }, {});
   User.associate = function(models) {
-    // associations can be defined here
+    User.belongsTo(models.Tenant)
   };
   return User;
 };

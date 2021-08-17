@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt'
 import db from '../../models/index';
 
 const User = db.User;
+const Tenant = db.Tenant;
 
 const userService = {
   async getAll () {
@@ -16,7 +17,9 @@ const userService = {
     return await User.create(user)
   },
   async loginUser (req) {
-    let user = await User.findOne({ where: { email: req.email}})
+    let user = await User.findOne({ where: { email: req.email}, include: {
+      model: Tenant
+    }})
     if(user) {
       if(bcrypt.compareSync(req.password, user.password)) {
         return user;
