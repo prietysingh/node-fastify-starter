@@ -82,16 +82,19 @@ const getTenant = {
   ]
 }
 
-const createOneUser = {
+const updateTenant = {
   tags,
-  body: {
-    properties: createSchema
-  },
-  response: {
-    201: {
-      type: 'object',
-      properties: userProperties
+  params: {
+    type: 'object',
+    properties: {
+      userId: {
+        type: 'string',
+        description: 'user id'
+      }
     }
+  },
+  body: {
+    type: 'object'
   },
   security: [
     {
@@ -108,5 +111,5 @@ const createOneUser = {
 module.exports = {
   getAllUsers,
   getTenant,
-  createOneUser
+  updateTenant
 }
