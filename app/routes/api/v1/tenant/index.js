@@ -1,4 +1,4 @@
-import {getTenant, updateTenant} from './type'
+import {getTenant, updateTenant,getTenants} from './type'
 import TenantController from '../../../../controllers/tenant'
 
 const userRoutes = async (app) => {
@@ -10,6 +10,7 @@ const userRoutes = async (app) => {
 
   app.get('/:userId', {schema: getTenant}, TenantController.getByUserId)
   app.post('/:userId', { schema: updateTenant }, TenantController.update)
+  app.get('/', {schema: getTenants}, TenantController.getAll)
 
 }
 

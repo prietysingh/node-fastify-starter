@@ -82,6 +82,21 @@ const getTenant = {
   ]
 }
 
+
+const getTenants = {
+  tags,
+  security: [
+    {
+      JWT: {
+        type: 'apiKey',
+        in: 'header',
+        name: 'Authorization',
+        description: ''
+      }
+    }
+  ]
+}
+
 const updateTenant = {
   tags,
   params: {
@@ -111,5 +126,6 @@ const updateTenant = {
 module.exports = {
   getAllUsers,
   getTenant,
-  updateTenant
+  updateTenant,
+  getTenants
 }
